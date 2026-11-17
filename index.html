@@ -48,7 +48,7 @@
     <div class="meta">
       <span>版本 <b>0.1.0 (1)</b></span>
       <span>大小 <b>7.1 MB</b></span>
-      <span>构建 <b>2026-11-17 19:37</b></span>
+      <span>构建 <b>2026-11-17 19:43</b></span>
     </div>
     <a class="btn" href="./LYTransChat.ipa" download>下载安装包 (.ipa)</a>
     <a class="btn ghost" href="#steps">怎么装</a>
@@ -56,9 +56,10 @@
 
   <div class="warn" style="margin-top:18px">
     <b>先说清一件事：全能签不能用自己的 Apple ID。</b>
-    它要的是 <code>p12</code> 证书 + <code>.mobileprovision</code> 描述文件（官方帮助页的五类教程全是
-    「证书兑换与导入」，没有 Apple ID 登录）。能用 Apple ID 签名的是另一类工具。
-    所以走 Apple ID 就得借用一次 Windows 电脑，装完以后不再需要。
+    它要的是 <code>p12</code> 证书 + <code>.mobileprovision</code> 描述文件
+    （官方帮助页五类教程全是「证书兑换与导入」，没有 Apple ID 登录入口）。
+    原厂官网自己也是这么写的：「使用第三方签名工具（如全能签）进行安装。<b>需要付费购买证书。</b>」
+    所以要用手上的 Apple ID，就得借用一次 Windows 电脑，装完以后不再需要。
   </div>
 
   <h2 id="steps">装到 iPhone（Windows + 数据线，约 10 分钟）</h2>
@@ -125,6 +126,18 @@
         选证书 → 立即签名 → 完成后点安装。</li>
       <li>安装页会要求 Bundle ID 与证书匹配，改了要记住，以后续签用同一个。</li>
     </ol>
+  </details>
+
+  <details style="margin-top:8px">
+    <summary style="cursor:pointer;color:var(--brand);font-size:14px">原厂是怎么分发的（核实记录）</summary>
+    <p class="note" style="margin-top:12px">
+      原厂官网「移动端 · 苹果」给的是三条：① <b>TestFlight</b>（主推，公开邀请链接，无需邀请码）；
+      ② 把 Apple ID 地区改到海外后在 App Store 搜「WATransChat」下载
+      （已上架美区，id <code>6761809886</code>，当前 v2.90，大陆 ID 搜不到）；
+      ③ <b>全能签 + 付费证书</b>，原厂原文写着「需要付费购买证书」。
+      三条都依赖 $99 开发者账号或付费证书，<b>没有一条是「用自己的 Apple ID 自签」</b>。
+      <br>本页走的是第四条 —— 只自己用时的零成本做法，也正是原厂开发期给自己手机装包的方式。
+    </p>
   </details>
 
   <div class="warn">
