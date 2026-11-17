@@ -46,82 +46,75 @@
 <body>
 <div class="wrap">
   <h1>LYTransChat</h1>
-  <p class="sub">iPhone 安装页 · 全能签（共享证书 / 自有证书）</p>
+  <p class="sub">iPhone 安装页 · Sideloadly + 自己的 Apple ID（免费，7 天）</p>
 
   <div class="card">
     <div class="meta">
       <span>版本 <b>0.1.0 (1)</b></span>
       <span>大小 <b>7.1 MB</b></span>
-      <span>构建 <b>2026-11-17 19:54</b></span>
+      <span>构建 <b>2026-11-17 20:15</b></span>
     </div>
     <a class="btn" href="./LYTransChat.ipa" download>下载安装包 (.ipa)</a>
     <a class="btn ghost" href="#steps">怎么装</a>
   </div>
 
   <div class="danger">
-    <b>关于「免费共享证书」，实话：</b>
-    全能签<b>官方只卖证书，不提供免费证书</b>。市面上流传的免费企业证书全部来自第三方站点，
-    其中相当一部分是<b>已被苹果撤销的证书</b>——领的时候要你先装一个「描述文件 / 配置描述」，
-    装错可能导致<b>设备需要重置</b>才能再装应用。
-    掉签也是随时的事：证书被封的那一刻，用它签的 App 全部打不开，而且不在你能控制的时间内。
+    <b>先准备一根「能传数据」的数据线。</b>
+    很多便宜的线只接了电源，插上只能充电、电脑认不到手机 —— 那种不行。
+    iPhone 15 / 16 是 <b>USB-C</b>，iPhone 14 及更早是 <b>Lightning</b>。
+    线只需要用一次：配对成功后打开 Wi-Fi 续签，以后不用再插。
   </div>
 
-  <h2 id="steps">装到 iPhone 上（全程手机，不用电脑）</h2>
+  <h2 id="steps">装到 iPhone 上（第一次要电脑，之后可无线）</h2>
   <ol>
-    <li><b>装全能签本体。</b>Safari 打开 <code>https://udid.nuosike.cn/sign/</code>（官网），
-      点【安装全能签】。它自己是企业签的，装完必须去
-      <b>设置 → 通用 → VPN 与设备管理</b> 信任它，否则打不开。</li>
+    <li><b>电脑上装 Sideloadly。</b>Windows 打开 <code>https://sideloadly.io/SideloadlySetup64.exe</code>
+      （137.5 MB）。装完不会自动启动，到开始菜单里找 <b>Sideloadly</b>。
+      <br><span class="tag">注意</span> 它要求装<b>网页版</b> iTunes / iCloud，不要用 Microsoft Store 版；
+      本机若已有 <code>Apple Mobile Device Service</code> 就够，不必另装 iTunes。</li>
 
-    <li><b>准备证书。</b>两条路，二选一：
-      <table>
-        <tr><th>方式</th><th>成本</th><th>寿命</th></tr>
-        <tr><td>买 P12 兑换码（官方 ¥58 起 / 第三方卡密 ¥18 起）</td><td>¥18–58</td><td>约 340 天</td></tr>
-        <tr><td>第三方免费共享企业证书</td><td>0</td><td>随时掉签</td></tr>
-      </table>
-      买的话：全能签 → 设置 → 兑换证书，填兑换码，生成后到「证书」页确认有效。
-      用共享证书的话：先确认来源可信，<b>只导入 <code>.p12</code>（需要密码）和
-      <code>.mobileprovision</code>，不要装任何来路不明的「配置描述文件」</b>。</li>
+    <li><b>插线并信任。</b>数据线连电脑 → iPhone 解锁 → 弹出「要信任此电脑吗」点
+      <b>信任</b> → 输入锁屏密码。电脑上打开 Sideloadly，左上角设备列表应出现你的 iPhone 名字。</li>
 
-    <li><b>先取 UDID。</b>全能签 → 底部「设置」→ 获取设备 UDID → 按提示到设置里装描述文件 →
-      装完会自动跳回，提示 UDID 获取成功。企业证书签名有时需要它。</li>
+    <li><b>装入 ipa。</b>点上面的「下载安装包」或用电脑上已有的文件，把它<b>拖进 Sideloadly 窗口</b>。</li>
 
-    <li><b>导入本页的 ipa。</b>点上面的「下载安装包」存进「文件」App；
-      回到全能签 → 设置 → <b>导入文件</b> → 选那个 ipa。
-      （也可以直接点 ipa 文件，弹「用全能签打开」更快。）</li>
+    <li><b>签 Apple ID。</b><code>Apple ID</code> 栏填你自己的账号 → 点 <b>Start</b> → 输密码。
+      开了双重认证的话，手机会弹 6 位验证码，填进 Sideloadly 的弹窗。</li>
 
-    <li><b>签名并安装。</b>全能签 → 底部「资源」→ 点这个 ipa → <b>签名</b> → 选证书 →
-      <b>立即签名</b> → 完成后点安装。
-      <br><span class="tag">记下来</span> 签名页会显示最终的 Bundle ID：证书是纯通配符 <code>*</code> 时可以保留
-      <code>com.lytranschat.app</code>；如果是 <code>com.某企业.*</code> 这类前缀证书，
-      工具会要求改成该前缀下的名字。<b>无论改成什么，续签时必须用同一个</b>，
-      否则系统会当成另一个 App，聊天记录与登录态全部清空。</li>
-
-    <li><b>信任 + 开发者模式。</b>设置 → 通用 → <b>VPN 与设备管理</b> 信任新证书；
+    <li><b>信任 + 开发者模式。</b>设置 → 通用 → <b>VPN 与设备管理</b> → 点你的 Apple ID → 信任；
       设置 → 隐私与安全性 → <b>开发者模式</b> 打开 → 重启 → 确认。
       iOS 16 以上不开，点了就闪退。</li>
+
+    <li><b>（强烈建议）打开 Wi-Fi 续签。</b>在 Sideloadly 里勾上自动续签，再到 iTunes 里
+      设备 → 摘要 → 选项 → 勾「通过 Wi-Fi 与此 iPhone 同步」→ 同步。
+      之后电脑与手机在同一 Wi-Fi 下，守护进程会在到期前自己重签，不用再插线。
+      <br><span class="tag">记下来</span> 续签必须用<b>同一个 Apple ID 与同一个 Bundle ID</b>
+      （<code>com.lytranschat.app</code>），改了会当成另一个 App，聊天记录与登录态全清。</li>
   </ol>
 
-  <h2>这条路的三个已知代价</h2>
-  <p class="note">
-    <b>1. 掉签不可预期。</b>共享证书被封时 App 直接打不开。数据不会丢，换证书重签一次就能恢复，
-    但<b>时间是证书拥有者说了算，不是你</b>。
-  </p>
-  <p class="note">
-    <b>2. 企业证书权限不完整。</b>免费/共享证书常常没开某些能力（例如后台处理、推送）。
-    我们的 App 里「锁屏也在后台收消息」正是靠这个 —— <b>这条可能签不出来</b>，
-    装完要实测后台能否存活。
-  </p>
-  <p class="note">
-    <b>3. 来源风险。</b>第三方证书站点可能要求安装描述文件，等于把设备的部分控制权交出去。
-    只从认识的人或长期运营的渠道拿，别在陌生群里点链接。
-  </p>
+  <h2>免费 Apple ID 的四个硬限制</h2>
+  <table>
+    <tr><th>限制</th><th>数值</th><th>对我们的影响</th></tr>
+    <tr><td>签名有效期</td><td><b>7 天</b></td><td>过期后 App 打不开，重签覆盖即可，数据不丢</td></tr>
+    <tr><td>同时自签 App 数</td><td>3 个</td><td>只装这一个，不冲突</td></tr>
+    <tr><td>7 天内新建 App ID</td><td>10 个</td><td>够用</td></tr>
+    <tr><td>不支持的能力</td><td>推送 / 内购 / iCloud / Apple Pay</td><td>我们不用 APNs（原厂也靠后台模式）；内购已改激活码</td></tr>
+  </table>
 
-  <h2>如果这条走不通</h2>
-  <p class="note">
-    换成 <b>Sideloadly + 自己的 Apple ID</b>：Windows 电脑装一次，登录 Apple ID 签名，
-    免费、7 天一次、<b>时间可预期</b>，证书是你自己的，没有第三方经手。
-    代价是要连电脑。
-  </p>
+  <h2>常见报错</h2>
+  <p class="note"><b>找不到设备</b>：换一根确定能传数据的线，手机保持解锁，点过「信任」；</p>
+  <p class="note"><b>Maximum number of installed apps</b>：免费账号 3 个自签名额满了，删掉一个别的自签 App；</p>
+  <p class="note"><b>Maximum App ID limit reached</b>：7 天内建了 10 个 App ID，等几天或换账号；</p>
+  <p class="note"><b>Untrusted Developer</b>：没在「VPN 与设备管理」里信任，或开发者模式没开。</p>
+
+  <details style="margin-top:8px">
+    <summary style="cursor:pointer;color:var(--brand);font-size:14px">没有数据线怎么办（全能签，要自备证书）</summary>
+    <p class="note" style="margin-top:12px">
+      全能签能在手机上直接签，不用电脑，但它<b>只接受 p12 证书</b>（没有 Apple ID 登录）。
+      官方只卖证书（¥58 起 / 约 340 天），第三方卡密 ¥18 起；
+      免费共享证书全来自第三方站点，其中不少是被苹果撤销的证书，领用前要求装「描述文件」，
+      装错可能导致设备重置。掉签随时发生，权限也常被裁剪。
+    </p>
+  </details>
 
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--brand);font-size:14px">原厂是怎么分发的（核实记录）</summary>
@@ -130,13 +123,13 @@
       ② 把 Apple ID 地区改到海外后 App Store 搜「WATransChat」下载
       （已上架美区，id <code>6761809886</code>，当前 v2.90，大陆 ID 搜不到）；
       ③ <b>全能签 + 付费证书</b>，原厂原文写着「需要付费购买证书」。
-      三条都依赖 $99 开发者账号或付费证书 —— 原厂自己走的是前两条，全能签是给用户的兜底。
+      三条都依赖 $99 开发者账号或付费证书 —— 原厂自己走的是前两条。
     </p>
   </details>
 
   <div class="warn">
     这是第三方客户端，与 WhatsApp Inc. 无关。只在自用范围内使用，别拿去冒充官方版本分发。
-    任何「配置描述文件」都不要随手装；Apple ID 密码不要交给任何网页或客服。
+    任何「配置描述文件」都不要随手装；Apple ID 密码只输在 Sideloadly 里，不要交给任何网页或客服。
   </div>
 </div>
 </body>
