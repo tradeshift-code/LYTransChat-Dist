@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#667EEA">
+<title>LYTransChat 安装页</title>
+<style>
+  :root{
+    --brand:#667EEA; --ink:#111111; --sub:#8E8E93; --line:#E3E3E8; --bg:#F5F6FA;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;padding:28px 20px 48px;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  }
+  .wrap{max-width:520px;margin:0 auto}
+  h1{font-size:26px;line-height:1.25;margin:0 0 6px}
+  .sub{color:var(--sub);font-size:14px;margin:0 0 22px}
+  .card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(17,17,17,.04)}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--sub);font-size:13px;margin-bottom:18px}
+  .meta b{color:var(--ink);font-weight:600}
+  .btn{
+    display:block;text-align:center;text-decoration:none;color:#fff;background:var(--brand);
+    border-radius:10px;height:48px;line-height:48px;font-weight:600;font-size:17px;
+  }
+  .btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand);line-height:46px}
+  .btn + .btn{margin-top:12px}
+  h2{font-size:15px;margin:28px 0 10px;color:var(--sub);font-weight:600}
+  ol{margin:0;padding-left:20px}
+  ol li{margin:0 0 10px;font-size:15px}
+  code{background:#F0F1F5;border-radius:5px;padding:1px 5px;font-size:13px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all}
+  .note{margin-top:22px;color:var(--sub);font-size:13px}
+  .warn{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+        color:var(--sub);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>LYTransChat</h1>
+  <p class="sub">iPhone 安装页 · 原厂同款分发方式（全能签 / 自签）</p>
+
+  <div class="card">
+    <div class="meta">
+      <span>版本 <b>0.1.0 (1)</b></span>
+      <span>大小 <b>7.1 MB</b></span>
+      <span>构建 <b>2026-11-17 19:20</b></span>
+    </div>
+    <a class="btn" href="./LYTransChat.ipa" download>下载安装包 (.ipa)</a>
+    <a class="btn ghost" href="#steps">怎么装</a>
+  </div>
+
+  <h2 id="steps">装到 iPhone 上（不需要电脑）</h2>
+  <ol>
+    <li>用 <b>Safari</b> 打开本页，点上面的「下载安装包」，文件会存进「文件」App。</li>
+    <li>在 iPhone 上装一个端上签名工具（全能签 / 轻松签一类），它能用证书把 ipa 重新签一遍。</li>
+    <li>打开签名工具 → 资源 / 导入文件 → 选刚下的 ipa → 选证书 → 立即签名 → 安装。</li>
+    <li>装完如果提示「未受信任的开发者」，去 <b>设置 → 通用 → VPN 与设备管理</b> 里信任那个证书。</li>
+  </ol>
+
+  <h2>没有证书？</h2>
+  <p class="note">
+    签名工具本身不提供长期证书，证书要自己有：共享企业证书（免费、随时可能掉签）、
+    买的个人证书（约一年）、或自己的 Apple ID（免费，7 天过期）。
+  </p>
+  <p class="note">
+    只想马上试一下，可以走电脑：Windows 下用 Sideloadly 选这个 ipa，登录 Apple ID 签名安装，
+    7 天后重签一次。
+  </p>
+
+  <div class="warn">
+    这是第三方客户端，与 WhatsApp Inc. 无关。只在自用范围内使用，别拿去冒充官方版本分发。
+  </div>
+</div>
+</body>
+</html>
