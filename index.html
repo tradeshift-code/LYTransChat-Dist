@@ -7,7 +7,7 @@
 <title>LYTransChat 安装页</title>
 <style>
   :root{
-    --brand:#667EEA; --ink:#111111; --sub:#8E8E93; --line:#E3E3E8; --bg:#F5F6FA;
+    --brand:#667EEA; --ink:#111111; --sub:#8E8E93; --line:#E3E3E8; --bg:#F5F6FA; --warnbg:#FDF3F3; --warnink:#B3261E;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{
@@ -34,115 +34,109 @@
   .note{margin:0 0 12px;color:var(--sub);font-size:13px}
   .warn{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
         color:var(--sub);font-size:13px}
+  .danger{margin:14px 0;padding:14px 16px;background:var(--warnbg);border:1px solid #F3C9C6;
+          border-radius:10px;color:var(--warnink);font-size:13px}
   .tag{display:inline-block;background:#EEF0FD;color:var(--brand);border-radius:6px;
        padding:1px 7px;font-size:12px;font-weight:600;margin-left:6px;vertical-align:1px}
-  .tag.red{background:#FDEDED;color:#C0392B}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 12px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#FAFAFC;font-weight:600;color:var(--sub)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>LYTransChat</h1>
-  <p class="sub">iPhone 安装页 · 用自己的 Apple ID，零成本</p>
+  <p class="sub">iPhone 安装页 · 全能签（共享证书 / 自有证书）</p>
 
   <div class="card">
     <div class="meta">
       <span>版本 <b>0.1.0 (1)</b></span>
       <span>大小 <b>7.1 MB</b></span>
-      <span>构建 <b>2026-11-17 19:43</b></span>
+      <span>构建 <b>2026-11-17 19:54</b></span>
     </div>
     <a class="btn" href="./LYTransChat.ipa" download>下载安装包 (.ipa)</a>
     <a class="btn ghost" href="#steps">怎么装</a>
   </div>
 
-  <div class="warn" style="margin-top:18px">
-    <b>先说清一件事：全能签不能用自己的 Apple ID。</b>
-    它要的是 <code>p12</code> 证书 + <code>.mobileprovision</code> 描述文件
-    （官方帮助页五类教程全是「证书兑换与导入」，没有 Apple ID 登录入口）。
-    原厂官网自己也是这么写的：「使用第三方签名工具（如全能签）进行安装。<b>需要付费购买证书。</b>」
-    所以要用手上的 Apple ID，就得借用一次 Windows 电脑，装完以后不再需要。
+  <div class="danger">
+    <b>关于「免费共享证书」，实话：</b>
+    全能签<b>官方只卖证书，不提供免费证书</b>。市面上流传的免费企业证书全部来自第三方站点，
+    其中相当一部分是<b>已被苹果撤销的证书</b>——领的时候要你先装一个「描述文件 / 配置描述」，
+    装错可能导致<b>设备需要重置</b>才能再装应用。
+    掉签也是随时的事：证书被封的那一刻，用它签的 App 全部打不开，而且不在你能控制的时间内。
   </div>
 
-  <h2 id="steps">装到 iPhone（Windows + 数据线，约 10 分钟）</h2>
+  <h2 id="steps">装到 iPhone 上（全程手机，不用电脑）</h2>
   <ol>
-    <li><b>先在本页把 ipa 下下来。</b>点上面的「下载安装包」，文件存进「文件」App，
-      或者留在电脑上（后面直接拖进签名工具，更省事）。</li>
+    <li><b>装全能签本体。</b>Safari 打开 <code>https://udid.nuosike.cn/sign/</code>（官网），
+      点【安装全能签】。它自己是企业签的，装完必须去
+      <b>设置 → 通用 → VPN 与设备管理</b> 信任它，否则打不开。</li>
 
-    <li><b>电脑上装 Sideloadly。</b>官网 <code>sideloadly.io</code>，Windows 版，安装包几十 MB。
-      它默认装到 <code>%LOCALAPPDATA%</code>，可以指定到 D 盘。
-      本机需要「Apple 移动设备驱动」——这台电脑已经有 <code>Apple Mobile Device Support</code>，通常不用再装。</li>
+    <li><b>准备证书。</b>两条路，二选一：
+      <table>
+        <tr><th>方式</th><th>成本</th><th>寿命</th></tr>
+        <tr><td>买 P12 兑换码（官方 ¥58 起 / 第三方卡密 ¥18 起）</td><td>¥18–58</td><td>约 340 天</td></tr>
+        <tr><td>第三方免费共享企业证书</td><td>0</td><td>随时掉签</td></tr>
+      </table>
+      买的话：全能签 → 设置 → 兑换证书，填兑换码，生成后到「证书」页确认有效。
+      用共享证书的话：先确认来源可信，<b>只导入 <code>.p12</code>（需要密码）和
+      <code>.mobileprovision</code>，不要装任何来路不明的「配置描述文件」</b>。</li>
 
-    <li><b>连手机。</b>数据线插上，iPhone 弹「是否信任此电脑」→ 信任 → 输锁屏密码。
-      Sideloadly 左上角会显示设备名，说明认到了。</li>
+    <li><b>先取 UDID。</b>全能签 → 底部「设置」→ 获取设备 UDID → 按提示到设置里装描述文件 →
+      装完会自动跳回，提示 UDID 获取成功。企业证书签名有时需要它。</li>
 
-    <li><b>签名并安装。</b>把 ipa 拖进 Sideloadly 的 <b>IPA</b> 框；
-      <b>Apple ID</b> 填你的邮箱；点 <b>Start</b>。中途会要 Apple ID 密码
-      （开了双重认证会再要一次验证码，或者要「App 专用密码」——
-      去 <code>appleid.apple.com</code> → 登录与安全 → App 专用密码 生成一串填进去）。
-      <br><span class="tag red">建议</span> 自签有账号风控风险，有条件就注册一个只用来自签的小号，
-      别拿主力 Apple ID 上。</li>
+    <li><b>导入本页的 ipa。</b>点上面的「下载安装包」存进「文件」App；
+      回到全能签 → 设置 → <b>导入文件</b> → 选那个 ipa。
+      （也可以直接点 ipa 文件，弹「用全能签打开」更快。）</li>
 
-    <li><b>信任 + 开发者模式。</b>设置 → 通用 → <b>VPN 与设备管理</b> → 信任你的 Apple ID；
-      再到 设置 → 隐私与安全性 → <b>开发者模式</b> → 打开 → 手机重启 → 重启后确认「打开」。
-      iOS 16 以上不开这一步，App 点开就闪退。</li>
+    <li><b>签名并安装。</b>全能签 → 底部「资源」→ 点这个 ipa → <b>签名</b> → 选证书 →
+      <b>立即签名</b> → 完成后点安装。
+      <br><span class="tag">记下来</span> 签名页会显示最终的 Bundle ID：证书是纯通配符 <code>*</code> 时可以保留
+      <code>com.lytranschat.app</code>；如果是 <code>com.某企业.*</code> 这类前缀证书，
+      工具会要求改成该前缀下的名字。<b>无论改成什么，续签时必须用同一个</b>，
+      否则系统会当成另一个 App，聊天记录与登录态全部清空。</li>
 
-    <li><b>打开 App。</b>应该看到「内核已就绪」。<b>长按版本号</b>能看到更新弹窗，
-      三个按钮里「前往全能签」只是把这个 ipa 的直链复制到剪贴板（原厂行为如此）。</li>
+    <li><b>信任 + 开发者模式。</b>设置 → 通用 → <b>VPN 与设备管理</b> 信任新证书；
+      设置 → 隐私与安全性 → <b>开发者模式</b> 打开 → 重启 → 确认。
+      iOS 16 以上不开，点了就闪退。</li>
   </ol>
 
-  <h2>三个硬限制（不是 App 的问题）</h2>
+  <h2>这条路的三个已知代价</h2>
   <p class="note">
-    <b>1. 7 天过期。</b>从签完那一刻算 7×24 小时，之后 App 一点就闪退 —— 不是坏了，是签名过期了。
-    重新用 Sideloadly 走一遍上面第 4–6 步即可，<b>覆盖安装，聊天记录不丢</b>（前提是 Bundle ID 不变，
-    Sideloadly 默认不改）。
+    <b>1. 掉签不可预期。</b>共享证书被封时 App 直接打不开。数据不会丢，换证书重签一次就能恢复，
+    但<b>时间是证书拥有者说了算，不是你</b>。
   </p>
   <p class="note">
-    <b>2. 一台设备同时最多 3 个自签 App。</b>装第 4 个时 iOS 会让你先删一个。
+    <b>2. 企业证书权限不完整。</b>免费/共享证书常常没开某些能力（例如后台处理、推送）。
+    我们的 App 里「锁屏也在后台收消息」正是靠这个 —— <b>这条可能签不出来</b>，
+    装完要实测后台能否存活。
   </p>
   <p class="note">
-    <b>3. 免费账号签不出推送 / 内购 / iCloud / Apple Pay。</b>
-    我们没用推送（原厂也没用，靠后台模式保活），内购改走激活码，所以不受影响。
-    但后台保活能做到什么程度，得装上去实测 —— 这是 iOS 和安卓差别最大的地方。
-  </p>
-
-  <h2>不想每 7 天连电脑</h2>
-  <p class="note">
-    <b>Sideloadly 支持 Wi-Fi 续签</b>：手机和电脑在同一 Wi-Fi 下，Sideloadly 开着就能自动重签
-    （需要它的小守护进程常驻，Win 上会随开机启动）。
-    <br>另一条路是 <b>AltStore</b>（Windows 装 AltServer，手机装 AltStore），同样靠同 Wi-Fi 自动续签，
-    但要额外装 iTunes 和 iCloud 的桌面版。
-    <br>想彻底不续签就买 p12 证书（约 ¥18–58 / 340 天），那时可以改走<b>全能签</b>，
-    全程在手机上，流程见下方折叠段。
+    <b>3. 来源风险。</b>第三方证书站点可能要求安装描述文件，等于把设备的部分控制权交出去。
+    只从认识的人或长期运营的渠道拿，别在陌生群里点链接。
   </p>
 
-  <details style="margin-top:8px">
-    <summary style="cursor:pointer;color:var(--brand);font-size:14px">买了 p12 证书的话（全能签流程）</summary>
-    <ol style="margin-top:12px">
-      <li>Safari 打开 <code>https://udid.nuosike.cn/sign/</code>，点【安装全能签】，
-        装完到 设置 → 通用 → VPN 与设备管理 信任它的企业证书。</li>
-      <li>打开全能签 → 底部「设置」→ 获取 UDID（会跳设置装描述文件，按提示装完自动回跳）。</li>
-      <li>设置 → <b>导入文件</b> → 选 <code>.p12</code> → 输密码；再选 <code>.mobileprovision</code>。
-        到「证书」页确认状态是<b>有效</b>。</li>
-      <li>设置 → 导入文件 → 选本页的 ipa。到「资源」→ 点这个 ipa → <b>签名</b> →
-        选证书 → 立即签名 → 完成后点安装。</li>
-      <li>安装页会要求 Bundle ID 与证书匹配，改了要记住，以后续签用同一个。</li>
-    </ol>
-  </details>
+  <h2>如果这条走不通</h2>
+  <p class="note">
+    换成 <b>Sideloadly + 自己的 Apple ID</b>：Windows 电脑装一次，登录 Apple ID 签名，
+    免费、7 天一次、<b>时间可预期</b>，证书是你自己的，没有第三方经手。
+    代价是要连电脑。
+  </p>
 
   <details style="margin-top:8px">
     <summary style="cursor:pointer;color:var(--brand);font-size:14px">原厂是怎么分发的（核实记录）</summary>
     <p class="note" style="margin-top:12px">
-      原厂官网「移动端 · 苹果」给的是三条：① <b>TestFlight</b>（主推，公开邀请链接，无需邀请码）；
-      ② 把 Apple ID 地区改到海外后在 App Store 搜「WATransChat」下载
+      原厂官网「移动端 · 苹果」给三条：① <b>TestFlight</b>（主推，公开邀请，无需邀请码）；
+      ② 把 Apple ID 地区改到海外后 App Store 搜「WATransChat」下载
       （已上架美区，id <code>6761809886</code>，当前 v2.90，大陆 ID 搜不到）；
       ③ <b>全能签 + 付费证书</b>，原厂原文写着「需要付费购买证书」。
-      三条都依赖 $99 开发者账号或付费证书，<b>没有一条是「用自己的 Apple ID 自签」</b>。
-      <br>本页走的是第四条 —— 只自己用时的零成本做法，也正是原厂开发期给自己手机装包的方式。
+      三条都依赖 $99 开发者账号或付费证书 —— 原厂自己走的是前两条，全能签是给用户的兜底。
     </p>
   </details>
 
   <div class="warn">
     这是第三方客户端，与 WhatsApp Inc. 无关。只在自用范围内使用，别拿去冒充官方版本分发。
-    Apple ID 密码只在签名工具的登录框里输，别交给任何网页或客服。
+    任何「配置描述文件」都不要随手装；Apple ID 密码不要交给任何网页或客服。
   </div>
 </div>
 </body>
